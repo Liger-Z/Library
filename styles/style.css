@@ -1,0 +1,31 @@
+html {
+  background-color: #FFF1E6;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #EDDCD2;
+  height: 100px;
+}
+
+h1 {
+  font-family: "DM Serif Display";
+  font-size: 50px;
+  color: rgb(161, 125, 106);
+}
+
+.new-book-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 20%;
+}
