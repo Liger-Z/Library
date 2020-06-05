@@ -13,6 +13,8 @@ body {
   align-items: center;
   background-color: #EDDCD2;
   height: 100px;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
 }
 
 h1 {
@@ -21,6 +23,23 @@ h1 {
   color: rgb(161, 125, 106);
 }
 
+.book-display-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 900px;
+  margin: 50px auto;
+}
+
+.book-card {
+  background-color: #B7B7A4;
+  width: 100%;
+}
+
+.book-info-list {
+  list-style-type: none;
+  color: #292929fd;
+  font-family: "Open Sans";
+}
 .new-book-form {
   display: flex;
   flex-flow: column wrap;
