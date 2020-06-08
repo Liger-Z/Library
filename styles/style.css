@@ -26,18 +26,22 @@ h1 {
 .book-display-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 10px 15px;
   width: 900px;
   margin: 50px auto;
 }
 
 .book-card {
-  background-color: #B7B7A4;
+  background-color: #F0EFEB;
   width: 100%;
+  border-radius: 15px;
+  border: 3px solid #A5A58D;
 }
 
 .book-info-list {
   list-style-type: none;
-  color: #292929fd;
+  color: rgb(59, 59, 59);
+  font-weight: bold;
   font-family: "Open Sans";
 }
 .new-book-form {
