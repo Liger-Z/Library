@@ -117,8 +117,12 @@ h1 {
 }
 
 .footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
   background-color: #EDDCD2;
   height: 100px;
+  width: 100%;
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;
 }

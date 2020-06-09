@@ -1,8 +1,8 @@
-function Book(title, author, pages, read) {
+function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = `${pages} pages`;
-  this.read = read;
+  this.status = status;
   this.info = function() {
     if (read === false) {
       return `${title} by ${author}, ${pages} pages, not read yet.`;
@@ -13,8 +13,18 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  
-  book = new Book(title, author, pages, read);
+  let bookDetails = document.getElementsByClassName("form-input");
+  let statusList = document.getElementsByName("status");
+  console.log(statusList);
+  for (let i = 0; i < statusList.length; i++) {
+    console.log(statusList[i].checked);
+    if (statusList[i].checked) {
+      var status = statusList[i].value;
+      break;
+    }
+  }
+  console.log(status);
+  book = new Book(bookDetails[0].value, bookDetails[1].value, bookDetails[2].value, status);
   myLibrary.push(book);
 }
 
@@ -36,7 +46,7 @@ function renderBooks() {
     pages.append(document.createTextNode(book.pages));
     pages.classList.add("book-info");
     let read = document.createElement('li');
-    read.append(document.createTextNode(book.read));
+    read.append(document.createTextNode(book.status));
     read.classList.add("book-info");
 
     bookContainer.appendChild(bookCard);
@@ -59,29 +69,9 @@ function showForm() {
 let myLibrary = [];
 const newBookButton = document.querySelector("#new-button");
 newBookButton.addEventListener("click", showForm);
-const addBookButton = document.querySelector("#addButton");
-addBookButton.addEventListener("click", addBookToLibrary)
-
-addBookToLibrary('Harry Potter Series', 'J. K. Rowling', '4224', 'Finished');
-addBookToLibrary('Fire Punch', 'Tatsuki Fujimoto', '1664', 'Not yet read');
-addBookToLibrary('Lord of the Rings', 'J. R. R. Tolkien', '1137', 'Reading');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
-renderBooks();
+const addBookButton = document.querySelector("#add-button");
+addBookButton.addEventListener("click", addBookToLibrary);
+addBookButton.addEventListener("click", renderBooks);
 /*
 Possibly sort books into categories i.e. if they have been read or not (or are being read)
 */
