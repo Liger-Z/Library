@@ -45,12 +45,40 @@ function renderBooks() {
     infoList.appendChild(pages);
     infoList.appendChild(read);
   })
+}
+
+function showForm() {
+  let newBookForm = document.querySelector(".new-book-container");
+  let newButton = document.querySelector(".new-button-container");
+  newBookForm.style.display = "block";
+  newButton.style.display = "none";
 
 }
 
 let myLibrary = [];
+const newBookButton = document.querySelector("#new-button");
+newBookButton.addEventListener("click", showForm);
+
 addBookToLibrary('Harry Potter Series', 'J. K. Rowling', '4224', 'Finished');
 addBookToLibrary('Fire Punch', 'Tatsuki Fujimoto', '1664', 'Not yet read');
 addBookToLibrary('Lord of the Rings', 'J. R. R. Tolkien', '1137', 'Reading');
 addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', '281', 'Not Yet read');
 renderBooks();
+/*
+Possibly sort books into categories i.e. if they have been read or not (or are being read)
+*/
