@@ -22,22 +22,34 @@
         <form class="new-book">
           <label>
             Title<br>
-            <input type="text" name="title"><br>
+            <input autocomplete="off" type="text" name="title" class="form-input"><br>
           </label>
           <label>
             Author<br>
-            <input type="text" name="author"><br>
+            <input autocomplete="off" type="text" name="author" class="form-input"><br>
           </label>
           <label>
             Pages<br>
-            <input type="text" name="pages"><br>
+            <input autocomplete="off" type="text" name="pages" class="form-input"><br>
           </label>
-        <label>
-          Finished
-          <input type="checkbox" value="read"><br>
+          <label>Status</label><br>
+          <label>
+            <input type="radio" name="status" value="completed">
+            Completed
+          </label>
+          <label>
+            <input type="radio" name="status" value="reading">
+            Reading
+          </label>
+          <label>
+            <input type="radio" name="status" value="not read">
+            Not Read
           </label>
         </form>
-        <button class="submit-button">Add Book</button>
+        <div class=new-book-buttons>
+          <button class="form-button" id="add-button">Add Book</button>
+          <button class="form-button" id="cancel-button">Cancel</button>
+        </div>
       </div>
     </div>
 
@@ -45,6 +57,10 @@
       
     </div>
   </div>
+
+  <footer>
+    <div class="footer"></div>
+  </footer>
   <script type="text/javascript" src="scripts/script.js"></script>
 </body>
 </html>

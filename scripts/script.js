@@ -12,7 +12,8 @@ function Book(title, author, pages, read) {
   }
 }
 
-function addBookToLibrary(title, author, pages, read) {
+function addBookToLibrary() {
+  
   book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
@@ -50,7 +51,7 @@ function renderBooks() {
 function showForm() {
   let newBookForm = document.querySelector(".new-book-container");
   let newButton = document.querySelector(".new-button-container");
-  newBookForm.style.display = "block";
+  newBookForm.style.display = "flex";
   newButton.style.display = "none";
 
 }
@@ -58,6 +59,8 @@ function showForm() {
 let myLibrary = [];
 const newBookButton = document.querySelector("#new-button");
 newBookButton.addEventListener("click", showForm);
+const addBookButton = document.querySelector("#addButton");
+addBookButton.addEventListener("click", addBookToLibrary)
 
 addBookToLibrary('Harry Potter Series', 'J. K. Rowling', '4224', 'Finished');
 addBookToLibrary('Fire Punch', 'Tatsuki Fujimoto', '1664', 'Not yet read');

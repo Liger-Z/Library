@@ -49,7 +49,8 @@ h1 {
   border-radius: 15px;
   font-weight: bold;
   font-size: 15px;
-  color: rgb(39, 39, 39);
+  color: rgb(59, 59, 59);
+  box-shadow: 0px 2px 2px rgb(141, 107, 89);
 }
 
 #new-button:hover {
@@ -58,16 +59,45 @@ h1 {
 
 .new-book-container {
   display: none;
+  flex-flow: column wrap;
+  justify-content: space-between;
   background-color: rgb(218, 164, 134);
   padding: 20px;
   border-radius: 15px;
+  box-shadow: 0px 6px 5px rgb(141, 107, 89);
+}
+
+.new-book-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-button {
+  border: 3px solid #A5A58D;
+  background-color: rgba(240, 239, 235, 0.9);
+  font-size: 15px;
+  padding: 5px;
+  width: 100px;
+  border-radius: 4px;
+}
+
+#add-button:hover {
+  background-color: rgba(240, 239, 235);
+  border: 3px solid rgb(90, 126, 73)
+}
+
+#cancel-button:hover {
+  background-color: rgba(240, 239, 235);
+  border: 3px solid rgb(156, 47, 20);
 }
 
 .book-display-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  gap: 10px 15px;
+  gap: 15px 15px;
   width: 950px;
   margin: 50px 500px;
 }
@@ -77,12 +107,29 @@ h1 {
   width: 95%;
   border-radius: 15px;
   border: 3px solid #A5A58D;
+  box-shadow: 0px 2px 3px rgb(121, 121, 104);
 }
 
 .book-info-list {
   list-style-type: none;
   color: rgb(59, 59, 59);
   font-weight: bold;
+}
+
+.footer {
+  background-color: #EDDCD2;
+  height: 100px;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+}
+
+.form-input {
+  margin-bottom: 10px;
+  width: 340px;
+  border: 2px solid rgb(88, 88, 88);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 15px;
 }
 
 label {
