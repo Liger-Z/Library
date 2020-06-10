@@ -78,7 +78,14 @@ function showForm() {
   let newButton = document.querySelector(".new-button-container");
   newBookForm.style.display = "flex";
   newButton.style.display = "none";
+}
 
+function cancelBook() {
+  let newBookForm = document.querySelector(".new-book-container");
+  let newButton = document.querySelector(".new-button-container");
+  newBookForm.style.display = "none";
+  newButton.style.display = "flex";
+  document.forms[0].reset();
 }
 
 let myLibrary = [];
@@ -88,6 +95,8 @@ newBookButton.addEventListener("click", showForm);
 const addBookButton = document.querySelector("#add-button");
 addBookButton.addEventListener("click", addBookToLibrary);
 addBookButton.addEventListener("click", renderBook);
+const cancelBookButton = document.querySelector("#cancel-button");
+cancelBookButton.addEventListener("click", cancelBook);
 /*
 Possibly sort books into categories i.e. if they have been read or not (or are being read)
 */
