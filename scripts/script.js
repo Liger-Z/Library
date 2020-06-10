@@ -34,7 +34,7 @@ function addBookToLibrary() {
 function bookInLibrary(book) {
   let inLibrary;
   myLibrary.forEach(bookObj => {
-    if (book.title == bookObj.title && book.author == bookObj.author && book.pages == bookObj.pages && book.status == bookObj.status) {
+    if (book.title == bookObj.title && book.author == bookObj.author && book.pages == bookObj.pages) {
       inLibrary = true
     }
   });
@@ -45,10 +45,12 @@ function bookInLibrary(book) {
 function renderBook() {
   const bookContainer = document.querySelector(".book-display-container");
   let book = myLibrary[myLibrary.length - 1];
+  index = myLibrary.length - 1;
   if (currentlyRendered.includes(book)) {return undefined};
 
   let bookCard = document.createElement('div');
   bookCard.classList.add("book-card");
+  bookCard.setAttribute("data-index", `${book.title}`);
   let infoList = document.createElement('ul');
   infoList.classList.add("book-info-list");
   let title = document.createElement('li');
@@ -63,8 +65,14 @@ function renderBook() {
   let read = document.createElement('li');
   read.append(document.createTextNode(book.status));
   read.classList.add("book-info");
+  let removeButton = document.createElement('button');
+  removeButton.append(document.createTextNode('X'))
+  removeButton.classList.add("remove-book");
+  removeButton.setAttribute("data-index", `${book.title}`);
+  removeButton.addEventListener("click", removeBook)
 
   bookContainer.appendChild(bookCard);
+  bookCard.appendChild(removeButton);
   bookCard.appendChild(infoList);
   infoList.appendChild(title);
   infoList.appendChild(author);
@@ -86,6 +94,19 @@ function cancelBook() {
   newBookForm.style.display = "none";
   newButton.style.display = "flex";
   document.forms[0].reset();
+}
+
+function removeBook() {
+  cardAttribute = this.getAttribute("data-index");
+  let bookCard = document.body.querySelector(`.book-card[data-index="${cardAttribute}"]`);
+  index = myLibrary.findIndex((book) => {return book.title == cardAttribute});
+  myLibrary.splice(index, 1);
+  currentlyRendered.splice(index, 1);
+
+  while (bookCard.firstChild) {
+    bookCard.removeChild(bookCard.lastChild);
+  }
+  bookCard.parentNode.removeChild(bookCard);
 }
 
 let myLibrary = [];
