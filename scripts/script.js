@@ -13,6 +13,9 @@ function Book(title, author, pages, status) {
 }
 
 function addBookToLibrary() {
+  if (formCheck()) {
+    return undefined;
+  }
   let bookDetails = document.getElementsByClassName("form-input");
   let statusList = document.getElementsByName("status");
   let status;
@@ -30,6 +33,7 @@ function addBookToLibrary() {
     myLibrary.push(book);
   }
 }
+
 function bookInLibrary(book) {
   let inLibrary;
   myLibrary.forEach(bookObj => {
@@ -42,11 +46,14 @@ function bookInLibrary(book) {
 }
 
 function renderBook() {
+  if (formCheck()) {
+    return undefined;
+  }
   const bookContainer = document.querySelector(".book-display-container");
   let book = myLibrary[myLibrary.length - 1];
   index = myLibrary.length - 1;
   if (currentlyRendered.includes(book)) {return undefined};
-
+  
   let bookCard = document.createElement('div');
   bookCard.classList.add("book-card");
   bookCard.setAttribute("data-index", `${book.title}`);
@@ -72,7 +79,7 @@ function renderBook() {
   removeButton.classList.add("remove-book");
   removeButton.setAttribute("data-index", `${book.title}`);
   removeButton.addEventListener("click", removeBook)
-
+  
   bookContainer.appendChild(bookCard);
   bookCard.appendChild(removeButton);
   bookCard.appendChild(infoList);
@@ -127,6 +134,26 @@ function toggleStatus() {
     statusButton.classList.remove("status-notread");
     statusButton.classList.add("status-completed");
   }
+}
+
+function formCheck() {
+  let bookDetails = document.getElementsByClassName("form-input");
+  let statusList = document.getElementsByName("status");
+  let statusCount = 0;
+
+  for (let i = 0; i < bookDetails.length; i++) {
+    if (bookDetails[i].value === "") {
+      return true;
+    }
+  }
+
+  for (let i = 0; i < statusList.length; i++) {
+    if (statusList[i].checked === false) {
+      statusCount += 1;
+    }
+  }
+  
+  return statusCount === 2 ? true : false;
 }
 
 let myLibrary = [];

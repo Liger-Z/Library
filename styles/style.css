@@ -160,9 +160,8 @@ h1 {
 .status-button {
   border: 1px solid transparent;
   border-radius: 5px;
-  background-color: #A5A58D;
   font-size: 15px;
-  box-shadow: 0px 1px 1px;
+  box-shadow: 0px 1px 1px rgb(75, 74, 74);
   position: absolute;
   right: 10px;
   bottom: 10px;

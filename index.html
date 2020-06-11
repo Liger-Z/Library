@@ -23,30 +23,30 @@
           <form class="new-book">
             <label>
               Title<br>
-              <input autocomplete="off" type="text" name="title" class="form-input"><br>
+              <input autocomplete="off" type="text" name="title" class="form-input" required="required"><br>
             </label>
             <label>
               Author<br>
-              <input autocomplete="off" type="text" name="author" class="form-input"><br>
+              <input autocomplete="off" type="text" name="author" class="form-input" required="required"><br>
             </label>
             <label>
               Pages<br>
-              <input autocomplete="off" type="text" name="pages" class="form-input"><br>
+              <input autocomplete="off" type="text" name="pages" class="form-input" required="required"><br>
             </label>
             <label>Status</label><br>
             <label>
-              <input type="radio" name="status" value="completed">
+              <input type="radio" name="status" value="completed" required="required">
               Completed
             </label>
             <label>
-              <input type="radio" name="status" value="notread">
+              <input type="radio" name="status" value="notread" required="required">
               Not Read
             </label>
+            <div class=new-book-buttons>
+              <button type="button" class="form-button" id="add-button">Add Book</button>
+              <button type="button" class="form-button" id="cancel-button">Cancel</button>
+            </div>
           </form>
-          <div class=new-book-buttons>
-            <button class="form-button" id="add-button">Add Book</button>
-            <button class="form-button" id="cancel-button">Cancel</button>
-          </div>
         </div>
       </div>
 
