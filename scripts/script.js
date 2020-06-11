@@ -24,7 +24,6 @@ function addBookToLibrary() {
   }
   
   book = new Book(bookDetails[0].value, bookDetails[1].value, bookDetails[2].value, status);
-  console.log(bookInLibrary(book))
   if (bookInLibrary(book)) {
     return undefined;
   }else {
@@ -62,9 +61,12 @@ function renderBook() {
   let pages = document.createElement('li');
   pages.append(document.createTextNode(book.pages));
   pages.classList.add("book-info");
-  let read = document.createElement('li');
-  read.append(document.createTextNode(book.status));
-  read.classList.add("book-info");
+  let statusButton = document.createElement('button');
+  book.status === "completed" ? statusButton.append(document.createTextNode("Completed")) : statusButton.append(document.createTextNode("Not Read"));
+  statusButton.classList.add(`status-${book.status}`);
+  statusButton.classList.add("status-button");
+  statusButton.setAttribute("data-index", `${book.title}`);
+  statusButton.addEventListener("click", toggleStatus);
   let removeButton = document.createElement('button');
   removeButton.append(document.createTextNode('X'))
   removeButton.classList.add("remove-book");
@@ -77,7 +79,7 @@ function renderBook() {
   infoList.appendChild(title);
   infoList.appendChild(author);
   infoList.appendChild(pages);
-  infoList.appendChild(read);
+  bookCard.appendChild(statusButton);
   currentlyRendered.push(book);
 }
 
@@ -97,9 +99,9 @@ function cancelBook() {
 }
 
 function removeBook() {
-  cardAttribute = this.getAttribute("data-index");
+  let cardAttribute = this.getAttribute("data-index");
   let bookCard = document.body.querySelector(`.book-card[data-index="${cardAttribute}"]`);
-  index = myLibrary.findIndex((book) => {return book.title == cardAttribute});
+  let index = myLibrary.findIndex((book) => {return book.title == cardAttribute});
   myLibrary.splice(index, 1);
   currentlyRendered.splice(index, 1);
 
@@ -107,6 +109,24 @@ function removeBook() {
     bookCard.removeChild(bookCard.lastChild);
   }
   bookCard.parentNode.removeChild(bookCard);
+}
+
+function toggleStatus() {
+  let buttonAttribute = this.getAttribute("data-index");
+  let book = myLibrary.find((book) => {return book.title === buttonAttribute});
+  let statusButton = document.querySelector(`.status-button[data-index="${buttonAttribute}"]`);
+  
+  if (book.status === "Completed") {
+    book.status = "Not Read";
+    statusButton.textContent = book.status;
+    statusButton.classList.remove("status-completed");
+    statusButton.classList.add("status-notread");
+  }else {
+    book.status = "Completed"
+    statusButton.textContent = book.status;
+    statusButton.classList.remove("status-notread");
+    statusButton.classList.add("status-completed");
+  }
 }
 
 let myLibrary = [];
@@ -118,6 +138,3 @@ addBookButton.addEventListener("click", addBookToLibrary);
 addBookButton.addEventListener("click", renderBook);
 const cancelBookButton = document.querySelector("#cancel-button");
 cancelBookButton.addEventListener("click", cancelBook);
-/*
-Possibly sort books into categories i.e. if they have been read or not (or are being read)
-*/
