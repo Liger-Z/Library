@@ -45,13 +45,12 @@ function bookInLibrary(book) {
   return inLibrary ? true : false;
 }
 
-function renderBook() {
-  if (formCheck()) {
+function renderBook(m=null, n=1, check=true) {
+  if (formCheck() && check) {
     return undefined;
   }
   const bookContainer = document.querySelector(".book-display-container");
-  let book = myLibrary[myLibrary.length - 1];
-  index = myLibrary.length - 1;
+  let book = myLibrary[myLibrary.length - n];
   if (currentlyRendered.includes(book)) {return undefined};
   
   let bookCard = document.createElement('div');
@@ -88,6 +87,12 @@ function renderBook() {
   infoList.appendChild(pages);
   bookCard.appendChild(statusButton);
   currentlyRendered.push(book);
+}
+
+function renderAll() {
+  for (let i = 1; i < myLibrary.length + 1; i++) {
+    renderBook(null, i, false);
+  }
 }
 
 function showForm() {
@@ -156,6 +161,36 @@ function formCheck() {
   return statusCount === 2 ? true : false;
 }
 
+function storageAvailable(type) {
+  var storage;
+  try {
+      storage = window[type];
+      var x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+  }
+  catch(e) {
+      return e instanceof DOMException && (
+          // everything except Firefox
+          e.code === 22 ||
+          // Firefox
+          e.code === 1014 ||
+          // test name field too, because code might not be present
+          // everything except Firefox
+          e.name === 'QuotaExceededError' ||
+          // Firefox
+          e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+          // acknowledge QuotaExceededError only if there's something already stored
+          (storage && storage.length !== 0);
+  }
+}
+
+function libraryStorage() {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  localStorage.setItem('currentlyRendered', JSON.stringify(currentlyRendered));
+}
+
 let myLibrary = [];
 let currentlyRendered = [];
 const newBookButton = document.querySelector("#new-button");
@@ -163,5 +198,12 @@ newBookButton.addEventListener("click", showForm);
 const addBookButton = document.querySelector("#add-button");
 addBookButton.addEventListener("click", addBookToLibrary);
 addBookButton.addEventListener("click", renderBook);
+addBookButton.addEventListener("click", libraryStorage);
 const cancelBookButton = document.querySelector("#cancel-button");
 cancelBookButton.addEventListener("click", cancelBook);
+
+if (localStorage.length > 0) {
+  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  currentlyRendered = JSON.parse(localStorage.getItem('currentlyRendered'));
+  renderAll(false);
+}
